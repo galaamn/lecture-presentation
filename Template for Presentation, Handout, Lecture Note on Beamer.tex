@@ -1,0 +1,383 @@
+%\PassOptionsToPackage{subsection=false}{beamerouterthememiniframes}
+\documentclass[compress,ignorenonframetext,red]{beamer} %% PRESENTATION MODE
+%\documentclass{article} \usepackage{beamerarticle} %% ARTICLE MODE
+%\usepackage{pgfpages}\pgfpagesuselayout{8 on 1}[a4paper,border shrink=5mm] %% PRINTING MODE
+\usepackage[utf8x]{inputenc}
+\usepackage[mongolian]{babel}
+\usepackage{ifthen,forloop,fontawesome,url,tikz,pgfplots,multicol,listings,multirow,subcaption}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\thetitle{Title}
+\def\thesubtitle{Subtitle}
+\def\theauthor{Г.Махгал}
+\def\theurl{http://galaa.mn/}
+\def\theurldesc{www.galaa.mn}
+\def\copyrightyear{2017}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subtitle{\thesubtitle}
+\date{\tiny \faCodeFork\ \the\year/\the\month/\the\day}
+
+\definecolor{darkred}{RGB}{114,0,0}
+
+\mode<presentation>{
+ \usetheme{Luebeck}
+ \usecolortheme{orchid}
+ \useoutertheme[subsection=false]{smoothbars}
+ \useinnertheme{rectangles}
+ \addtobeamertemplate{background canvas}{\transfade[duration=1]}{}
+ %\setbeamercolor{footnote}{fg=red}
+ \setbeamercolor{footnote mark}{fg=red}
+ \usenavigationsymbolstemplate{}
+ \setbeamertemplate{itemize items}[default]
+ \setbeamertemplate{enumerate items}[default]
+ \setbeamertemplate{title page}[default]
+ \setbeamertemplate{blocks}[default]
+ \setbeamersize{text margin left=10pt,text margin right=10pt}
+\newcounter{slidenumber}
+\title[\href{\theurl}{\theurldesc}\hspace{0.325\textwidth}\arabic{slidenumber}\stepcounter{slidenumber}]{\thetitle}
+\author[\textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor]{\theauthor}
+\institute[]{\textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor\\ \textsf{\href{\theurl}{\theurldesc}}}
+\logo{
+\hyperlink{titlepage}{
+\begin{tikzpicture}[scale=0.5,rotate=135]
+ \draw [white,fill=darkred] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
+ \draw [white,fill=white] (0.25,0) -- (0.25,0.8) -- (0.55,0.8) -- (0.55,1) -- (0.75,1) -- (0.75,0.6) -- (0.45,0.6) -- (0.45,0) -- (0.25,0);
+\end{tikzpicture}
+}}
+\titlegraphic{
+\begin{tikzpicture}[scale=0.5,rotate=135]
+ \draw [white,fill=darkred] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
+ \draw [white,fill=white] (0.25,0) -- (0.25,0.8) -- (0.55,0.8) -- (0.55,1) -- (0.75,1) -- (0.75,0.6) -- (0.45,0.6) -- (0.45,0) -- (0.25,0);
+\end{tikzpicture}}
+ \renewcommand{\sectionname}{Хэсэг}
+ \addto\captionsmongolian{\renewcommand{\sectionname}{Хэсэг}}
+}
+
+\mode<article>{
+ \usepackage{hyperref,fullpage}
+ \selectcolormodel{gray}
+ \title{\thetitle}
+ \author{\textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor}
+ \hypersetup{
+   colorlinks=true
+ }
+ \usepackage{chngcntr}
+ \counterwithin*{section}{part}
+ \usepackage{geometry}
+ \geometry{
+  a4paper,
+  inner=3.5cm,
+  outer=2cm,
+  top=2.5cm,
+  bottom=2.75cm,
+ }
+ % Page Header
+ \usepackage{fancyhdr}
+ \pagestyle{fancy}
+ \renewcommand\headrule{
+   \begin{minipage}{1\textwidth}
+   \color{gray}\hrule width \hsize \kern 1mm \hrule width \hsize height 2pt
+   \vspace{16pt}
+   \end{minipage}}
+ \lhead[\textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor]{\href{\theurl}{\textcolor{black}{\theurldesc}}}
+ \rhead[\href{\theurl}{\textcolor{black}{\theurldesc}}]{\textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor}
+ \cfoot[\thepage]{\thepage}
+ % Redefine the plain page style
+ \fancypagestyle{plain}{%
+   \fancyfoot[C]{\thepage}%
+   \renewcommand\headrule{
+   \begin{minipage}{1\textwidth}
+   \color{gray}\hrule width \hsize \kern 1mm \hrule width \hsize height 2pt 
+   \vspace{16pt}
+   \end{minipage}}
+ }
+}
+
+\hypersetup{
+  unicode=true,pagebackref=true
+}
+
+\makeatletter
+\AtBeginPart{
+  \ifthenelse{\equal{\insertpartnumber}{1}}{}{
+  \section{}
+  \frame[plain]
+  {
+  \begin{center}
+  \vskip1cm
+  \begin{tikzpicture}[scale=2,rotate=135]
+   \draw [white,fill=darkred] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
+   \draw [white,fill=white] (0.25,0) -- (0.25,0.8) -- (0.55,0.8) -- (0.55,1) -- (0.75,1) -- (0.75,0.6) -- (0.45,0.6) -- (0.45,0) -- (0.25,0);
+  \end{tikzpicture}
+  \vskip1cm
+  \textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor \\ \textsf{\href{\theurl}{\theurldesc}}
+  \end{center}
+  }
+  }
+  \setcounter{slidenumber}{1}
+  \setcounter{footnote}{0}
+  \beamer@tocsectionnumber=0\relax
+  \setcounter{section}{0}
+  \frame{\partpage\hypertarget{part\insertpartnumber}{}}
+  \frame{\frametitle{\insertpart}\tableofcontents}
+}
+\makeatother
+
+\AtBeginSection[]{
+  \subsection<presentation>{}
+  \frame{\sectionpage}
+}
+
+\renewcommand{\partname}{Лекц}
+\addto\captionsmongolian{\renewcommand{\partname}{Лекц}}
+\deftranslation[to=mongolian]{Definition}{Тодорхойлолт}
+\deftranslation[to=mongolian]{Theorem}{Теорем}
+\deftranslation[to=mongolian]{Lemma}{Лемм}
+\deftranslation[to=mongolian]{Corollary}{Мөрдлөгөө}
+\deftranslation[to=mongolian]{Example}{Жишээ}
+\deftranslation[to=mongolian]{Problem}{Бодлого}
+\theoremstyle{definition}
+\newtheorem{properties}{Чанар}
+\newtheorem{formula}{Томъёо}
+\theoremstyle{remark}
+\newtheorem{remark}{Санамж}
+\newtheorem{recall}{Сэргээн санах нь}
+
+\lstset{
+  language=R,
+  basicstyle={\ttfamily},
+%  backgroundcolor=\color{black!25},
+  keywordstyle=\color{blue!85},
+  commentstyle=\color{red!85},
+  stringstyle=\color{black!75},
+  breakatwhitespace=true,
+  breaklines=true,
+  frame=l,
+  framesep=5pt,framerule=1pt,
+  xleftmargin=7pt,xrightmargin=0pt,
+  rulecolor=\color{blue!65},
+  keepspaces=true,
+  showstringspaces=false,
+  columns=flexible,
+  numbers=none,
+  tabsize=3,
+  otherkeywords={},
+  deletendkeywords={},
+  deletekeywords={}
+}
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\frame[plain]{\titlepage\hypertarget{titlepage}{}}
+
+\frame<presentation>[plain]{
+\frametitle{
+\begin{center}
+Лекцийн гипер-холбоосууд
+\end{center}
+\vspace{-1.1\baselineskip}
+}\framesubtitle{}
+\begin{center}
+\begin{columns}[t]
+\column{0.45\textwidth}
+\begin{multicols}{2}
+\begin{enumerate}
+\newcounter{loop}
+\forloop{loop}{1}{\value{loop}<17}{
+  \item \hyperlink{part\number\numexpr\value{enumi}\relax}{Лекц \number\numexpr\value{enumi}\relax}
+}
+\end{enumerate}
+\end{multicols}
+\end{columns}
+\end{center}
+}
+
+\part{Title}
+
+\section[Short title]{Title}
+
+\frame{
+\frametitle{Frame title}\framesubtitle{Frame subtitle text}
+\begin{theorem}
+\end{theorem}
+\begin{proof}[Баталгаа\nopunct]
+\end{proof}
+\begin{proof}[Баталгаа\nopunct]\renewcommand{\qedsymbol}{\ldots}
+\end{proof}
+\begin{lemma}
+\end{lemma}
+\begin{corollary}
+\end{corollary}
+}
+
+\frame{
+\frametitle{Frame title}\framesubtitle{Frame subtitle text}
+\begin{definition}[Additional text]
+\end{definition}
+\begin{block}{Block title}
+\only<presentation>{\vspace{-4mm}}
+\begin{eqnarray*}
+f(x) & = & x\cdot x \\
+ & = & x^2
+\end{eqnarray*}
+\end{block}
+\begin{exampleblock}{Block title}
+
+\end{exampleblock}
+\begin{example}[Additional text]
+\end{example}
+\begin{problem}[Additional text]
+\end{problem}
+}
+
+\part{Title}
+
+\section[Short title]{Title}
+
+\begin{frame}[fragile]
+\frametitle{Frame title}\framesubtitle{Frame subtitle text}
+\lstinline[keywords={print},otherkeywords={}]|print('Hello LaTeX!')|
+\begin{example}[additional text]\only<article>{\hfil}
+\begin{lstlisting}[keywords={if,else,print},otherkeywords={}]
+if (condition) {
+  print(TRUE)
+} else {
+  print(FALSE)
+}
+\end{lstlisting}
+\end{example}
+\end{frame}
+
+\frame[containsverbatim]{
+\frametitle{Frame title}\framesubtitle{Frame subtitle text}
+\verb|print('Текст')|
+\begin{verbatim}
+if (нөхцөл) {
+  print(үнэн)
+} else {
+  print(худал)
+}
+\end{verbatim}
+}
+
+\section[Short title]{Title}
+
+\frame{
+\frametitle{Frame title}\framesubtitle{Frame subtitle text}
+\begin{figure}[!h]
+\centering
+\faImage
+\caption{caption}
+\end{figure}
+% Дэд зураг
+\begin{figure}[!h]
+\centering
+\begin{subfigure}{0.45\textwidth}
+\centering
+\faImage
+\caption{caption}
+\end{subfigure}
+\begin{subfigure}{0.45\textwidth}
+\centering
+\faImage
+\caption{caption}
+\end{subfigure}
+\caption{caption}
+\end{figure}
+\begin{example}\only<article>{\hfil}
+\begin{figure}[!h]
+\centering
+\faImage
+\caption{caption}
+\end{figure}
+\only<presentation>{\vspace{-4mm}}
+\end{example}
+}
+
+\frame{
+\frametitle{Frame title}\framesubtitle{Frame subtitle text}
+\begin{table}[!h]
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.25}
+\centering
+\begin{tabular}{rcl|R{0.1\textwidth}C{0.1\textwidth}L{0.1\textwidth}}
+r & c & l & R & C & L \\
+\hline
+\multirow{2}{*}{rows} & 1 & 2 & 3 & 4 & 5 \\
+ & 1 & 2 & \multicolumn{3}{c}{multicolumn} \\
+\end{tabular}
+\caption{caption}
+\end{table}
+}
+
+\section[Short title]{Title}
+
+\frame{
+\frametitle{Frame title}\framesubtitle{Frame subtitle text}
+\begin{columns}[t]
+\column{0.5\textwidth}
+column
+\column{0.5\textwidth}
+column
+\end{columns}
+}
+
+\frame{
+\frametitle{Frame title}\framesubtitle{Frame subtitle text}
+\begin{multicols}{2}
+\begin{itemize}
+\item item
+\item item
+\item item
+\item[]
+\end{itemize}
+\end{multicols}
+}
+
+\section<presentation>*{}
+
+\begin{frame}[plain]
+\frametitle{\only<presentation>{
+\begin{center}
+Ном зүй
+\end{center}
+\vspace{-1em}
+}}
+\begin{thebibliography}{}
+%\setbeamertemplate{bibliography item}[book]
+\setbeamertemplate{bibliography item}{\textcolor{darkred}{\faBook}}
+\bibitem{Knuth1986}
+Donald E.Knuth
+\newblock {\em The TeXbook}.
+\newblock American Mathematical Society, 1986.
+
+\bibitem{Tantau2015}
+Till Tantau, Joseph Wright, Vedran Miletić
+\newblock {\em The beamer class -- User Guide for version 3.36.}.
+\newblock 2015.
+\end{thebibliography}
+\end{frame}
+
+\frame<presentation>[plain]
+{
+\begin{center}
+\vskip1cm
+\begin{tikzpicture}[scale=2,rotate=135]
+ \draw [white,fill=darkred] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
+ \draw [white,fill=white] (0.25,0) -- (0.25,0.8) -- (0.55,0.8) -- (0.55,1) -- (0.75,1) -- (0.75,0.6) -- (0.45,0.6) -- (0.45,0) -- (0.25,0);
+\end{tikzpicture}
+\vskip1cm
+\textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor \\ \textsf{\href{\theurl}{\theurldesc}}
+\end{center}
+}
+\end{document}
