@@ -26,8 +26,9 @@
  \useoutertheme[subsection=false]{smoothbars}
  \useinnertheme{rectangles}
  \addtobeamertemplate{background canvas}{\transfade[duration=1]}{}
- %\setbeamercolor{footnote}{fg=red}
+ %\setbeamercolor{footnote}{fg=blue}
  \setbeamercolor{footnote mark}{fg=red}
+ \renewcommand*{\thefootnote}{\setlength{\fboxsep}{1pt}\colorbox{white}{\tiny\arabic{footnote}}}
  \usenavigationsymbolstemplate{}
  \setbeamertemplate{itemize items}[default]
  \setbeamertemplate{enumerate items}[default]
@@ -207,7 +208,7 @@
 \section[Short title]{Title}
 
 \frame{
-\frametitle{Frame title}\framesubtitle{Frame subtitle text}
+\frametitle{Frame title\footnote{footnote}}\framesubtitle{Frame subtitle text}
 \begin{theorem}
 \end{theorem}
 \begin{proof}[Баталгаа\nopunct]
