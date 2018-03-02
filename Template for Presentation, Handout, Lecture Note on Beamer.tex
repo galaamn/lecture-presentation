@@ -21,6 +21,7 @@
 \definecolor{darkred}{RGB}{114,0,0}
 
 \mode<presentation>{
+ \usefonttheme[stillsansseriflarge]{serif}
  \usetheme{Luebeck}
  \usecolortheme{orchid}
  \useoutertheme[subsection=false]{smoothbars}
@@ -36,7 +37,12 @@
  \setbeamertemplate{blocks}[default]
  \setbeamersize{text margin left=10pt,text margin right=10pt}
 \newcounter{slidenumber}
-\title[\href{\theurl}{\theurldesc}\hspace{0.325\textwidth}\arabic{slidenumber}\stepcounter{slidenumber}]{\thetitle}
+\title[\href{\theurl}{\theurldesc}\hspace{0.25\textwidth}
+\begin{minipage}{3em}
+\flushright
+\arabic{slidenumber}
+\end{minipage}
+\stepcounter{slidenumber}]{\thetitle}
 \author[\textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor]{\theauthor}
 \institute[]{\textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor\\ \textsf{\href{\theurl}{\theurldesc}}}
 \logo{
