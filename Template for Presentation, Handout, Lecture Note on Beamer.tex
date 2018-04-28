@@ -1,7 +1,16 @@
-%\PassOptionsToPackage{subsection=false}{beamerouterthememiniframes}
-\documentclass[compress,ignorenonframetext,red]{beamer} %% PRESENTATION MODE
+\PassOptionsToPackage{subsection=false}{beamerouterthememiniframes}
+\documentclass[compress,red]{beamer} %% PRESENTATION MODE
 %\documentclass{article} \usepackage{beamerarticle} %% ARTICLE MODE
 %\usepackage{pgfpages}\pgfpagesuselayout{8 on 1}[a4paper,border shrink=5mm] %% PRINTING MODE
+%\pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}
+%\pgfpageslogicalpageoptions{2}{border code=\pgfusepath{stroke}}
+%\pgfpageslogicalpageoptions{3}{border code=\pgfusepath{stroke}}
+%\pgfpageslogicalpageoptions{4}{border code=\pgfusepath{stroke}}
+%\pgfpageslogicalpageoptions{5}{border code=\pgfusepath{stroke}}
+%\pgfpageslogicalpageoptions{6}{border code=\pgfusepath{stroke}}
+%\pgfpageslogicalpageoptions{7}{border code=\pgfusepath{stroke}}
+%\pgfpageslogicalpageoptions{8}{border code=\pgfusepath{stroke}}
+
 \usepackage[utf8x]{inputenc}
 \usepackage[mongolian]{babel}
 \usepackage{ifthen,forloop,fontawesome,url,tikz,pgfplots,multicol,listings,multirow,subcaption}
@@ -19,6 +28,19 @@
 \date{\tiny \faCodeFork\ \the\year/\the\month/\the\day}
 
 \definecolor{darkred}{RGB}{114,0,0}
+
+\makeatletter
+\let\beamer@writeslidentry@miniframeson=\beamer@writeslidentry
+\def\beamer@writeslidentry@miniframesoff{%
+ \expandafter\beamer@ifempty\expandafter{\beamer@framestartpage}{}% does not happen normally
+ {%else
+   % removed \addtocontents commands
+   \clearpage\beamer@notesactions%
+ }
+}
+\newcommand*{\miniframeson}{\let\beamer@writeslidentry=\beamer@writeslidentry@miniframeson}
+\newcommand*{\miniframesoff}{\let\beamer@writeslidentry=\beamer@writeslidentry@miniframesoff}
+\makeatother
 
 \mode<presentation>{
  \usefonttheme[stillsansseriflarge]{serif}
@@ -66,6 +88,8 @@
  \selectcolormodel{gray}
  \title{\thetitle}
  \author{\textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor}
+ \renewcommand{\refname}{Ном зүй}
+ \addto\captionsmongolian{\renewcommand{\refname}{Ном зүй}}
  \hypersetup{
    colorlinks=true
  }
@@ -107,27 +131,14 @@
 
 \makeatletter
 \AtBeginPart{
-  \ifthenelse{\equal{\insertpartnumber}{1}}{}{
-  \section{}
-  \frame[plain]
-  {
-  \begin{center}
-  \vskip1cm
-  \begin{tikzpicture}[scale=2,rotate=135]
-   \draw [white,fill=darkred] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
-   \draw [white,fill=white] (0.25,0) -- (0.25,0.8) -- (0.55,0.8) -- (0.55,1) -- (0.75,1) -- (0.75,0.6) -- (0.45,0.6) -- (0.45,0) -- (0.25,0);
-  \end{tikzpicture}
-  \vskip1cm
-  \textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor \\ \textsf{\href{\theurl}{\theurldesc}}
-  \end{center}
-  }
-  }
+  \miniframesoff
   \setcounter{slidenumber}{1}
   \setcounter{footnote}{0}
   \beamer@tocsectionnumber=0\relax
   \setcounter{section}{0}
   \frame{\partpage\hypertarget{part\insertpartnumber}{}}
   \frame{\frametitle{\insertpart}\tableofcontents}
+  \miniframeson
 }
 \makeatother
 
@@ -181,13 +192,13 @@
 
 \begin{document}
 
-\maketitle
+\only<article>{\maketitle\tableofcontents}
 
-\tableofcontents
+\miniframesoff
 
-\frame[plain]{\titlepage\hypertarget{titlepage}{}}
+\frame[plain,noframenumbering]{\titlepage\hypertarget{titlepage}{}}
 
-\frame<presentation>[plain]{
+\frame<presentation>[plain,noframenumbering]{
 \frametitle{
 \begin{center}
 Лекцийн гипер-холбоосууд
@@ -208,6 +219,8 @@
 \end{columns}
 \end{center}
 }
+
+\miniframeson
 
 \part{Title}
 
@@ -346,14 +359,16 @@ column
 \item item
 \item item
 \item item
+\item item
 \item[]
+\item item
 \end{itemize}
 \end{multicols}
 }
 
-\section<presentation>*{}
+\miniframesoff
 
-\begin{frame}[plain]
+\begin{frame}[plain,noframenumbering]
 \frametitle{\only<presentation>{
 \begin{center}
 Ном зүй
@@ -375,7 +390,7 @@ Till Tantau, Joseph Wright, Vedran Miletić
 \end{thebibliography}
 \end{frame}
 
-\frame<presentation>[plain]
+\frame<presentation>[plain,noframenumbering]
 {
 \begin{center}
 \vskip1cm
@@ -387,4 +402,7 @@ Till Tantau, Joseph Wright, Vedran Miletić
 \textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor \\ \textsf{\href{\theurl}{\theurldesc}}
 \end{center}
 }
+
+\miniframeson
+
 \end{document}
