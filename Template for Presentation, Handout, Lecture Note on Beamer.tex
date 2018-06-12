@@ -136,7 +136,7 @@
   \setcounter{footnote}{0}
   \beamer@tocsectionnumber=0\relax
   \setcounter{section}{0}
-  \frame{\partpage\hypertarget{part\insertpartnumber}{}}
+  \frame{\partpage}
   \frame{\frametitle{\insertpart}\tableofcontents}
   \miniframeson
 }
@@ -197,28 +197,6 @@
 \miniframesoff
 
 \frame[plain,noframenumbering]{\titlepage\hypertarget{titlepage}{}}
-
-\frame<presentation>[plain,noframenumbering]{
-\frametitle{
-\begin{center}
-Лекцийн гипер-холбоосууд
-\end{center}
-\vspace{-1.1\baselineskip}
-}\framesubtitle{}
-\begin{center}
-\begin{columns}[t]
-\column{0.45\textwidth}
-\begin{multicols}{2}
-\begin{enumerate}
-\newcounter{loop}
-\forloop{loop}{1}{\value{loop}<17}{
-  \item \hyperlink{part\number\numexpr\value{enumi}\relax}{Лекц \number\numexpr\value{enumi}\relax}
-}
-\end{enumerate}
-\end{multicols}
-\end{columns}
-\end{center}
-}
 
 \miniframeson
 
