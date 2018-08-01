@@ -136,9 +136,21 @@
   \setcounter{footnote}{0}
   \beamer@tocsectionnumber=0\relax
   \setcounter{section}{0}
+  % table of parts
+  \addtocontents{toc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}
   \frame{\partpage}
   \frame{\frametitle{\insertpart}\tableofcontents}
   \miniframeson
+}
+% table of parts
+\providecommand\beamer@partintoc[3]{%
+  \ifnum\c@tocdepth=-1\relax
+    % requesting onlyparts.
+    \item #2
+  \fi
+}
+\define@key{beamertoc}{onlyparts}[]{%
+  \c@tocdepth=-1\relax
 }
 \makeatother
 
@@ -194,11 +206,37 @@
 
 \only<article>{\maketitle\tableofcontents}
 
+\only<presentation>{
+
 \miniframesoff
 
 \frame[plain,noframenumbering]{\titlepage\hypertarget{titlepage}{}}
 
+\frame[plain,noframenumbering]{
+\begin{center}
+\begin{tikzpicture}
+\node at (0,0) {\scalebox{6}{\faCamera}};
+\node at (0,0) [opacity=0.75] {\color{darkred}\scalebox{18}{\faBan}};
+\end{tikzpicture}
+\\[1em]
+{\scshape фото зураг бичиж тэмдэглэх чадварт сөрөг нөлөөтэй}
+\end{center}
+}
+
+\bgroup
+\setbeamertemplate{frametitle continuation}{\gdef\beamer@frametitle{}}
+\addtobeamertemplate{frametitle}{}{\vspace{1em}}
+\frame[allowframebreaks,plain,noframenumbering]{\frametitle{Агуулга}
+\begin{enumerate}
+\item[]\vspace{-\baselineskip}
+\tableofcontents[onlyparts]
+\end{enumerate}
+}
+\egroup
+
 \miniframeson
+
+}
 
 \part{Title}
 
