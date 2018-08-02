@@ -1,7 +1,21 @@
-\PassOptionsToPackage{subsection=false}{beamerouterthememiniframes}
-\documentclass[compress,red]{beamer} %% PRESENTATION MODE
-%\documentclass{article} \usepackage{beamerarticle} %% ARTICLE MODE
-%\usepackage{pgfpages}\pgfpagesuselayout{8 on 1}[a4paper,border shrink=5mm] %% PRINTING MODE
+%% \LaTeX\ Template for Presentations, Handouts and Lecture Notes
+%% Created by Galaa
+
+%-----------------------------------
+
+%% PRESENTATION MODE
+\documentclass[compress,red]{beamer}
+
+%-----------------------------------
+
+%% ARTICLE MODE
+%\documentclass{article} \usepackage{beamerarticle}
+
+%-----------------------------------
+
+%% HANDOUT MODE
+%\documentclass[compress,red,handout]{beamer}
+%\usepackage{pgfpages}\pgfpagesuselayout{8 on 1}[a4paper,border shrink=5mm]
 %\pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}
 %\pgfpageslogicalpageoptions{2}{border code=\pgfusepath{stroke}}
 %\pgfpageslogicalpageoptions{3}{border code=\pgfusepath{stroke}}
@@ -10,6 +24,8 @@
 %\pgfpageslogicalpageoptions{6}{border code=\pgfusepath{stroke}}
 %\pgfpageslogicalpageoptions{7}{border code=\pgfusepath{stroke}}
 %\pgfpageslogicalpageoptions{8}{border code=\pgfusepath{stroke}}
+
+%-----------------------------------
 
 \usepackage[utf8x]{inputenc}
 \usepackage[mongolian]{babel}
@@ -68,15 +84,17 @@
 \author[\textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor]{\theauthor}
 \institute[]{\textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor\\ \textsf{\href{\theurl}{\theurldesc}}}
 \logo{
-\hyperlink{titlepage}{
+\hyperlinkdocumentstart{
+\usebeamercolor[bg]{frametitle}
 \begin{tikzpicture}[scale=0.5,rotate=135]
- \draw [white,fill=darkred] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
+ \draw [white,fill=bg] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
  \draw [white,fill=white] (0.25,0) -- (0.25,0.8) -- (0.55,0.8) -- (0.55,1) -- (0.75,1) -- (0.75,0.6) -- (0.45,0.6) -- (0.45,0) -- (0.25,0);
 \end{tikzpicture}
 }}
 \titlegraphic{
+\usebeamercolor[bg]{frametitle}
 \begin{tikzpicture}[scale=0.5,rotate=135]
- \draw [white,fill=darkred] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
+ \draw [white,fill=bg] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
  \draw [white,fill=white] (0.25,0) -- (0.25,0.8) -- (0.55,0.8) -- (0.55,1) -- (0.75,1) -- (0.75,0.6) -- (0.45,0.6) -- (0.45,0) -- (0.25,0);
 \end{tikzpicture}}
  \renewcommand{\sectionname}{Хэсэг}
@@ -210,13 +228,13 @@
 
 \miniframesoff
 
-\frame[plain,noframenumbering]{\titlepage\hypertarget{titlepage}{}}
+\frame[plain,noframenumbering]{\titlepage}
 
 \frame[plain,noframenumbering]{
 \begin{center}
 \begin{tikzpicture}
 \node at (0,0) {\scalebox{6}{\faCamera}};
-\node at (0,0) [opacity=0.75] {\color{darkred}\scalebox{18}{\faBan}};
+\node at (0,0) [opacity=0.85] {\usebeamercolor[bg]{frametitle}\scalebox{18}{\faBan}};
 \end{tikzpicture}
 \\[1em]
 {\scshape фото зураг бичиж тэмдэглэх чадварт сөрөг нөлөөтэй}
@@ -225,12 +243,13 @@
 
 \bgroup
 \setbeamertemplate{frametitle continuation}{\gdef\beamer@frametitle{}}
-\addtobeamertemplate{frametitle}{}{\vspace{1em}}
+\addtobeamertemplate{frametitle}{}{\vspace{2\baselineskip}}
 \frame[allowframebreaks,plain,noframenumbering]{\frametitle{Агуулга}
 \begin{enumerate}
-\item[]\vspace{-\baselineskip}
+\item[] \vspace{-\baselineskip}
 \tableofcontents[onlyparts]
 \end{enumerate}
+
 }
 \egroup
 
@@ -277,6 +296,29 @@ f(x) & = & x\cdot x \\
 }
 
 \part{Title}
+
+\section[Short title]{Title}
+
+\begin{frame}
+\frametitle{Frame title}\framesubtitle{Frame subtitle text}
+\structure{Heading} Text
+\\[1em]
+\begin{structureenv}
+environment contents
+\end{structureenv}
+\\[1em]
+This is \alert{important}.
+\\[1em]
+\begin{alertenv}
+environment contents
+\end{alertenv}
+\vspace{1em}
+\begin{description}[most long label]
+\item[label] description
+\item[long label] long description
+\item[longest label] description
+\end{description}
+\end{frame}
 
 \section[Short title]{Title}
 
@@ -393,7 +435,7 @@ column
 }}
 \begin{thebibliography}{}
 %\setbeamertemplate{bibliography item}[book]
-\setbeamertemplate{bibliography item}{\textcolor{darkred}{\faBook}}
+\setbeamertemplate{bibliography item}{\usebeamercolor[bg]{frametitle}\faBook}
 \bibitem{Knuth1986}
 Donald E.Knuth
 \newblock {\em The TeXbook}.
@@ -410,10 +452,12 @@ Till Tantau, Joseph Wright, Vedran Miletić
 {
 \begin{center}
 \vskip1cm
+{\usebeamercolor[bg]{frametitle}
 \begin{tikzpicture}[scale=2,rotate=135]
- \draw [white,fill=darkred] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
+ \draw [white,fill=bg] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
  \draw [white,fill=white] (0.25,0) -- (0.25,0.8) -- (0.55,0.8) -- (0.55,1) -- (0.75,1) -- (0.75,0.6) -- (0.45,0.6) -- (0.45,0) -- (0.25,0);
 \end{tikzpicture}
+}
 \vskip1cm
 \textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor \\ \textsf{\href{\theurl}{\theurldesc}}
 \end{center}

@@ -2,7 +2,7 @@
 
 ***
 
-Template for Presentation, Handout, Lecture Note on Beamer
+LaTeX Template for Presentations, Handouts and Lecture Notes
 
 **Author** 
 
