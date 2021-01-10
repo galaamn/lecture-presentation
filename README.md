@@ -6,4 +6,4 @@ LaTeX Template for Presentations, Handouts and Lecture Notes
 
 **Author** 
 
-[Galaa](http://galaa.mn/ "Galaa's Personal Page")
+[Galaa](https://www.galaa.mn/ "Author's Personal Page")

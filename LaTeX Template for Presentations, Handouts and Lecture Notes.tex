@@ -4,17 +4,17 @@
 %-----------------------------------
 
 %% PRESENTATION MODE
-\documentclass[compress,red]{beamer}
+\documentclass[compress,red,notheorems]{beamer}
 
 %-----------------------------------
 
 %% ARTICLE MODE
-%\documentclass{article} \usepackage{beamerarticle}
+%\documentclass{article} \usepackage[notheorems]{beamerarticle}
 
 %-----------------------------------
 
 %% HANDOUT MODE
-%\documentclass[compress,red,handout]{beamer}
+%\documentclass[compress,red,handout,notheorems]{beamer}
 %\usepackage{pgfpages}\pgfpagesuselayout{8 on 1}[a4paper,border shrink=5mm]
 %\pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}
 %\pgfpageslogicalpageoptions{2}{border code=\pgfusepath{stroke}}
@@ -42,8 +42,6 @@
 
 \subtitle{\thesubtitle}
 \date{\tiny \faCodeFork\ \the\year/\the\month/\the\day}
-
-\definecolor{darkred}{RGB}{114,0,0}
 
 \makeatletter
 \let\beamer@writeslidentry@miniframeson=\beamer@writeslidentry
@@ -144,7 +142,14 @@
 }
 
 \hypersetup{
-  unicode=true,pagebackref=true
+  unicode=true,pagebackref=true,
+  pdftex,
+  pdfauthor={\theauthor},
+  pdftitle={\thetitle},
+  pdfsubject={\thesubtitle},
+  pdfkeywords={},
+  pdfproducer={pdfLaTeX},
+  pdfcreator={LaTeX with Beamer class}
 }
 
 \makeatletter
@@ -177,15 +182,34 @@
   \frame{\sectionpage}
 }
 
+\AtEndDocument{
+  \miniframesoff
+  \frame<presentation>[plain,noframenumbering]
+  {
+  \begin{center}
+  \vskip1cm
+  {\usebeamercolor[bg]{frametitle}
+  \begin{tikzpicture}[scale=2,rotate=135]
+   \draw [white,fill=bg] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
+   \draw [white,fill=white] (0.25,0) -- (0.25,0.8) -- (0.55,0.8) -- (0.55,1) -- (0.75,1) -- (0.75,0.6) -- (0.45,0.6) -- (0.45,0) -- (0.25,0);
+  \end{tikzpicture}
+  }
+  \vskip1cm
+  \textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor \\ \textsf{\href{\theurl}{\theurldesc}}
+  \end{center}
+  }
+  \miniframeson
+}
+
 \renewcommand{\partname}{Лекц}
 \addto\captionsmongolian{\renewcommand{\partname}{Лекц}}
-\deftranslation[to=mongolian]{Definition}{Тодорхойлолт}
-\deftranslation[to=mongolian]{Theorem}{Теорем}
-\deftranslation[to=mongolian]{Lemma}{Лемм}
-\deftranslation[to=mongolian]{Corollary}{Мөрдлөгөө}
-\deftranslation[to=mongolian]{Example}{Жишээ}
-\deftranslation[to=mongolian]{Problem}{Бодлого}
 \theoremstyle{definition}
+\newtheorem{definition}{Тодорхойлолт}
+\newtheorem{theorem}{Теорем}
+\newtheorem{lemma}{Лемм}
+\newtheorem{corollary}{Мөрдлөгөө}
+\newtheorem{example}{Жишээ}
+\newtheorem{problem}{Бодлого}
 \newtheorem{properties}{Чанар}
 \newtheorem{formula}{Томъёо}
 \theoremstyle{remark}
@@ -196,20 +220,22 @@
   language=R,
   basicstyle={\ttfamily},
 %  backgroundcolor=\color{black!25},
-  keywordstyle=\color{blue!85},
-  commentstyle=\color{red!85},
+  keywordstyle=\usebeamercolor[bg]{frametitle},
+  commentstyle=\color{black!75},
   stringstyle=\color{black!75},
   breakatwhitespace=true,
   breaklines=true,
   frame=l,
   framesep=5pt,framerule=1pt,
   xleftmargin=7pt,xrightmargin=0pt,
-  rulecolor=\color{blue!65},
+  rulecolor=\usebeamercolor[bg]{frametitle},
   keepspaces=true,
   showstringspaces=false,
   columns=flexible,
   numbers=none,
   tabsize=3,
+  %inputencoding=utf8,
+  escapeinside={\#}{;},
   otherkeywords={},
   deletendkeywords={},
   deletekeywords={}
@@ -327,7 +353,7 @@ environment contents
 \lstinline[keywords={print},otherkeywords={}]|print('Hello LaTeX!')|
 \begin{example}[additional text]\only<article>{\hfil}
 \begin{lstlisting}[keywords={if,else,print},otherkeywords={}]
-if (condition) {
+if (condition) { #\# comment $a^2+b^2=c^2$ ;
   print(TRUE)
 } else {
   print(FALSE)
@@ -442,21 +468,6 @@ Till Tantau, Joseph Wright, Vedran Miletić
 \newblock 2015.
 \end{thebibliography}
 \end{frame}
-
-\frame<presentation>[plain,noframenumbering]
-{
-\begin{center}
-\vskip1cm
-{\usebeamercolor[bg]{frametitle}
-\begin{tikzpicture}[scale=2,rotate=135]
- \draw [white,fill=bg] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
- \draw [white,fill=white] (0.25,0) -- (0.25,0.8) -- (0.55,0.8) -- (0.55,1) -- (0.75,1) -- (0.75,0.6) -- (0.45,0.6) -- (0.45,0) -- (0.25,0);
-\end{tikzpicture}
-}
-\vskip1cm
-\textcopyright\ \copyrightyear\ifthenelse{\equal{\the\year}{\copyrightyear}}{}{\,--\,\the\year} \theauthor \\ \textsf{\href{\theurl}{\theurldesc}}
-\end{center}
-}
 
 \miniframeson
 
